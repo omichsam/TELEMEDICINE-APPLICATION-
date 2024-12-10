@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleMed: Comprehensive Telemedicine Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.getElementById("edit-profile-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch('/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({ name, email, password})
+            })
+            const data = await response.json();
+
+            alert('New user created')
+        })
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Welcome to TeleMed</h1>
+        <p>Your virtual healthcare platform</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#login">Login</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="#book-appointment">Book Appointment</a></li>
+            <li><a href="#profile">Profile</a></li>
+        </ul>
+    </nav>
+
+    <!-- Login Section -->
+    <section id="login">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+            <p><a href="#register">Don’t have an account? Register here.</a></p>
+        </form>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="register">
+        <h2>Register</h2>
+        <form action="/register" method="POST">
+            <label for="reg-name">Full Name:</label>
+            <input type="text" id="reg-name" name="name" required>
+            <label for="reg-email">Email:</label>
+            <input type="email" id="reg-email" name="email" required>
+            <label for="reg-password">Password:</label>
+            <input type="password" id="reg-password" name="password" required>
+            <label for="reg-role">Role:</label>
+            <select id="reg-role" name="role" required>
+                <option value="patient">Patient</option>
+                <option value="doctor">Doctor</option>
+            </select>
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <!-- Book Appointment Section -->
+    <section id="book-appointment">
+        <h2>Book an Appointment</h2>
+        <form action="/appointments" method="POST">
+            <label for="doctor">Select Doctor:</label>
+            <select id="doctor" name="doctor" required>
+                <!-- Dynamically populate this list with available doctors -->
+                <option value="doctor1">Dr. John Doe - Cardiologist</option>
+                <option value="doctor2">Dr. Jane Smith - Pediatrician</option>
+            </select>
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="time">Select Time:</label>
+            <input type="time" id="time" name="time" required>
+            <button type="submit">Book Appointment</button>
+        </form>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile">
+        <h2>Your Profile</h2>
+        <div id="profile-info">
+            <!-- This area will be dynamically populated with the user’s profile information -->
+            <p><strong>Name:</strong> [User Name]</p>
+            <p><strong>Email:</strong> [User Email]</p>
+            <p><strong>Role:</strong> [User Role]</p>
+            <button id="edit-profile">Edit Profile</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 TeleMed. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
