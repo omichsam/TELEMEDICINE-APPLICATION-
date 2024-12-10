@@ -139,8 +139,7 @@ Students will create necessary database tables, set up an Express.js server, imp
 
 ## Contributors:
 | Name | Role |
-| --- | --- |
-| [Your Name] | Developer |
+| --- | --- | 
 | [Samson Michira | Developer |
 
 
